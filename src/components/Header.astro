@@ -1,0 +1,139 @@
+---
+import '../styles/global.css';
+import siteLogo from '../assets/favicon.svg';
+import hamburgerMenu from '../assets/hamburger-menu.svg';
+---
+
+<header>
+    <div id="mini-header">
+        <div id="site-title-block">
+            <a class="site-logo-link" href="#">
+                <img class="site-logo" src={siteLogo.src} alt="#">
+            </a>
+            <p class="site-title">
+                freezeH2O
+            </p>
+        </div>
+        <button class="nav-button" type="button" aria-label="Toggle Navigation">
+            <img src={hamburgerMenu.src} alt="hamburger-menu">
+        </button>
+    </div>
+    <nav id="main-nav">
+        <ul id="nav-list">
+            <li class="nav-list-item">
+                <a class="nav-link" href="#">Projects</a>
+            </li>
+            <li class="nav-list-item">
+                <a class="nav-link" href="#">Undetermined</a>
+            </li>
+            <li class="nav-list-item">
+                <a class="nav-link" href="#">Undetermined</a>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+<style>
+    header {
+        position: relative;
+        z-index: 100;
+    }
+
+    #mini-header {
+        background-color: var(--color-primary);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 5px;
+    }
+
+    #site-title-block {
+        display: flex;
+        align-items: center;
+    }
+
+    .site-logo {
+        width: 60px;
+    }
+
+    .site-title {
+        font-size: 20px;
+        font-weight: bold;
+        color: var(--color-text);
+    }
+
+    .nav-button {
+        width: 60px;
+        height: 60px;
+        background: none;
+        border: none;
+        padding: 0;
+        margin: 0;
+        cursor: pointer;
+    }
+
+    .nav-button img {
+        width: 30px;
+        height: 30px;
+    }
+
+    img {
+        width: 20px;
+    }
+
+    #main-nav {
+        position: absolute;
+        top:100%;
+        left: 0;
+        width: 100%;
+
+        background-color: var(--color-secondary);
+
+        clip-path: inset(0 0 100% 0);
+        opacity: 0;
+        visibility: hidden;
+
+        transition:
+            clip-path 0.3s ease,
+            opacity 0.3s ease,
+            visibility 0.3s;
+    }
+
+    #main-nav.open {
+        clip-path: inset(0 0 0 0);
+        opacity: 1;
+        visibility: visible;
+    }
+
+    #nav-list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    .nav-link {
+        display: block;
+        padding: 16px 24px;
+        color: white;
+        text-decoration: none;
+    }
+
+    .nav-link:hover , .nav-link:focus-visible {
+        background-color: red;
+    }
+
+    .nav-list-item:not(:last-child) {
+        border-bottom: 1px solid white;
+    }
+
+    
+</style>
+
+<script>
+    const menuButton = document.querySelector('.nav-button');
+    const navigation = document.querySelector('#main-nav');
+
+    menuButton?.addEventListener('click', () => {
+        const isOpen = navigation?.classList.toggle('open') ?? false;
+    });
+</script>
