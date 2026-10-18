@@ -1,14 +1,15 @@
 :root {
     /* Main colors */
-    --color-primary: #2874a6;
-    --color-secondary: #45aaf2;
-    --color-accent: #8ed4ff;
+    --color-primary: #192142ff;
+    --color-secondary: #0068fdff;
+    --color-accent: #00FFF5;
 
     /* Backgrounds */
-    --color-background: #101827;
-    --color-surface: #152238;
+    --color-darkest: #0C120C;
+    --color-background: #252422;
+    --color-surface: #2F394D;
 
     /* Text */
-    --color-text: #ffffff;
-    --color-text-muted: #b0becd;
+    --color-text: #F2F4FF;
+    --color-text-muted: #EBEEFF;
 }

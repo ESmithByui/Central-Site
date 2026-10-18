@@ -1,17 +1,17 @@
 ---
 import '../styles/global.css';
-import siteLogo from '../assets/favicon.svg';
+import siteLogo from '../assets/site-logo.svg';
 import hamburgerMenu from '../assets/hamburger-menu.svg';
 ---
 
 <header>
     <div id="mini-header">
         <div id="site-title-block">
-            <a class="site-logo-link" href="#">
+            <a class="site-logo-link" href="/">
                 <img class="site-logo" src={siteLogo.src} alt="#">
             </a>
             <p class="site-title">
-                freezeH2O
+                freeze<span class="special-colors">H2O</span>
             </p>
         </div>
         <button class="nav-button" type="button" aria-label="Toggle Navigation">
@@ -21,7 +21,7 @@ import hamburgerMenu from '../assets/hamburger-menu.svg';
     <nav id="main-nav">
         <ul id="nav-list">
             <li class="nav-list-item">
-                <a class="nav-link" href="#">Projects</a>
+                <a class="nav-link" href="/projects">Projects</a>
             </li>
             <li class="nav-list-item">
                 <a class="nav-link" href="#">Undetermined</a>
@@ -37,10 +37,10 @@ import hamburgerMenu from '../assets/hamburger-menu.svg';
     header {
         position: relative;
         z-index: 100;
+        background-color: var(--color-primary);
     }
 
     #mini-header {
-        background-color: var(--color-primary);
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -57,9 +57,17 @@ import hamburgerMenu from '../assets/hamburger-menu.svg';
     }
 
     .site-title {
-        font-size: 20px;
+        font-size: 25px;
         font-weight: bold;
         color: var(--color-text);
+        padding:5px;
+    }
+
+    .special-colors {
+        background: linear-gradient(145deg, var(--color-secondary), var(--color-accent));
+        background-clip: text;
+        -webkit-background-clip: text;
+        color:transparent;
     }
 
     .nav-button {
@@ -87,7 +95,7 @@ import hamburgerMenu from '../assets/hamburger-menu.svg';
         left: 0;
         width: 100%;
 
-        background-color: var(--color-secondary);
+        background-color: var(--color-surface);
 
         clip-path: inset(0 0 100% 0);
         opacity: 0;
@@ -114,18 +122,128 @@ import hamburgerMenu from '../assets/hamburger-menu.svg';
     .nav-link {
         display: block;
         padding: 16px 24px;
-        color: white;
+        color: var(--color-text);
         text-decoration: none;
     }
 
     .nav-link:hover , .nav-link:focus-visible {
-        background-color: red;
+        background-color: var(--color-secondary);
     }
 
     .nav-list-item:not(:last-child) {
-        border-bottom: 1px solid white;
+        border-bottom: 1px solid var(--color-accent);
     }
 
+    @media (min-width: 768px) {
+
+        /* Header */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: stretch;
+        }
+
+        .nav-button {
+            display: none;
+        }
+
+        /* Navigation Container */
+        #main-nav {
+            position: static;
+            display: flex;
+            align-items: stretch;
+
+            width: auto;
+            margin-right: 0;
+
+            background-color: transparent;
+            clip-path: none;
+            opacity: 1;
+            visibility: visible;
+            transition: none;
+        }
+
+        /* Navigation List */
+        #nav-list {
+            display: flex;
+            align-items: stretch;
+        }
+
+        /* Navigation Items */
+        .nav-list-item {
+            position: relative;
+            display: flex;
+            align-items: stretch;
+
+            margin-left: -15px;
+            border: none;
+            transform: none;
+        }
+
+        .nav-list-item:first-child {
+            margin-left: 0;
+        }
+
+        .nav-list-item:not(:last-child) {
+            border-bottom: none;
+        }
+
+        /* Slanted Links */
+        .nav-link {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            padding: 0 35px;
+            color: var(--color-text);
+
+            background-color: transparent;
+            transform: none;
+
+            clip-path: polygon(
+                15px 0,
+                100% 0,
+                calc(100% - 15px) 100%,
+                0 100%
+            );
+        }
+
+        /* Slanted Left Borders */
+        .nav-list-item::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+
+            background-color: var(--color-accent);
+
+            clip-path: polygon(
+                15px 0,
+                18px 0,
+                3px 100%,
+                0 100%
+            );
+
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        /* Hover and Focus */
+        .nav-link:hover,
+        .nav-link:focus-visible {
+            background-color: var(--color-surface);
+        }
+
+        /* Final Link - Straight Right Edge */
+        .nav-list-item:last-child .nav-link {
+            clip-path: polygon(
+                15px 0,
+                100% 0,
+                100% 100%,
+                0 100%
+            );
+        }
+    }
     
 </style>
 
